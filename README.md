@@ -16,4 +16,22 @@
 
 > 项目移植于 [webpack-template](https://github.com/EsunR/webpack-template) 的 typescript 分支，今后会在该项目中继续更新。
 
+# 使用
 
+安装依赖：
+
+```shell
+$ yarn
+```
+
+运行开发模式：
+
+```shell
+$ yarn dev
+```
+
+编译项目：
+
+```shell
+$ yarn build
+```
