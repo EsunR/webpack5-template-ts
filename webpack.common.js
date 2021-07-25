@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const webpack = require("webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin") // 防止样式闪烁
 
+const devMode = process.env.NODE_ENV !== "production"
+
 module.exports = {
   entry: "./src/js/index.ts",
   output: {
@@ -54,23 +56,30 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         type: "asset/resource",
         generator: {
-          filename: "images/[fullhash][ext][query]",
+          filename: "images/[hash][ext][query]",
         },
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         type: "asset/resource",
         generator: {
-          filename: "fonts/[fullhash][ext][query]",
+          filename: "fonts/[hash][ext][query]",
         },
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+        ],
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.js$/,

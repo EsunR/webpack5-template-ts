@@ -8,7 +8,7 @@ module.exports = merge(common, {
     contentBase: "./dist",
     // 设置 inline 这样当 html 发生改变后，页面也会呗刷新
     inline: true,
-    hot: false,
-    host: "localhost"
-  }
+    hot: true,
+    host: "localhost",
+  },
 })
